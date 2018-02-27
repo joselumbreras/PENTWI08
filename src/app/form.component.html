@@ -1,0 +1,29 @@
+<form [formGroup]="notesForm">
+    <div class="col-md-6">
+            <div class="form-group">
+                <label for="note-title">Título</label>
+                <input formControlName="title" name="title" id="note-title" type="text" class="form-control">
+                <small *ngIf="notesForm.controls.title.invalid && notesForm.controls.title.touched">Debe ingresar un título para la nota</small>
+            </div>
+            <div class="form-group">
+                <label for="note-author">Autor</label>
+                <input formControlName="author" name="author" id="note-author" type="text" class="form-control">
+                <small *ngIf="notesForm.controls.author.invalid && notesForm.controls.author.touched">Debe ingresar un autor para la nota</small>
+            </div>
+            <div class="form-group">
+                <label for="note-tags">Etiquetas</label>
+                <input formControlName="tags" name="tags" id="note-tags" type="text" class="form-control" pattern="\&quot;.*?\&quot;|[^,]*">
+                <small *ngIf="notesForm.controls.tags.invalid && notesForm.controls.tags.touched">Debe ingresar al menos una etiqueta (separadas por coma)</small>
+            </div>                                    
+            <button (click)="saveNote()" id="note-save" class="btn btn-primary" [disabled]="notesForm.invalid">Guardar</button>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="note-text">Escriba su nota aquí</label>
+            <div style="height: 100%;">
+                <textarea formControlName="text" name="text" id="note-text" class="form-control" cols="50" rows="5"></textarea>
+                <small *ngIf="notesForm.controls.text.invalid && notesForm.controls.text.touched">Debe ingresar contenido a la nota</small>
+            </div>                                    
+        </div>
+    </div>
+</form>                      
